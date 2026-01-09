@@ -1,251 +1,92 @@
-# Kundan_Singh
-#Topic :-                                   Student Marksheet
-📊 Student Marks Analysis Using Python
+Kundan Singh
+Topic:                       Students Marksheet
 
-This project demonstrates how to analyze and visualize student marks using Python, Pandas, and Matplotlib. It covers data creation, CSV file handling, statistical analysis, and multiple types of data visualizations.
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
-🚀 Features
 
-Create student marks data using Pandas DataFrame
 
-Save and read data from a CSV file
+data = {
+    "Name": ["Aman", "Riya", "Karan", "Supriya"],
+    "Math": [78, 88, 67, 91],
+    "Science": [85, 79, 72, 89],
+    "English": [90, 92, 80, 95],
+    "Computer": [88, 81, 75, 93]
+}
 
-Calculate:
+df = pd.DataFrame(data)
 
-Average marks per subject
 
-Maximum and minimum marks per subject
+df.to_csv("student_marks.csv", index=False)
 
-Total marks and percentage per student
+print("CSV FILE CREATED SUCCESSFULLY!\n")
+print(df)
 
-Visualize data using:
 
-Bar charts
 
-Line plots
+df = pd.read_csv("student_marks.csv")
 
-Pie charts
+print("\nREADING CSV FILE:\n")
+print(df)
 
-🛠️ Technologies Used
 
-Python 3
 
-Pandas
+subjects = ["Math", "Science", "English", "Computer"]
 
-Matplotlib
 
-NumPy (optional)
+avg_marks = df[subjects].mean()
+max_marks = df[subjects].max()
+min_marks = df[subjects].min()
 
-📂 Project Structure
-├── student_marks.py        # Main Python script
-├── student_marks.csv       # Generated CSV file
-├── README.md               # Project documentation
+print("\nAVERAGE MARKS PER SUBJECT:\n", avg_marks)
+print("\nMAXIMUM MARKS PER SUBJECT:\n", max_marks)
+print("\nMINIMUM MARKS PER SUBJECT:\n", min_marks)
 
-📋 Dataset Description
 
-The dataset contains marks of four students across four subjects:
+df["Total"] = df[subjects].sum(axis=1)
+df["Percentage"] = (df["Total"] / (len(subjects)*100)) * 100
 
-Name	Math	Science	English	Computer
-Aman	78	85	90	88
-Riya	88	79	92	81
-Karan	67	72	80	75
-Supriya	91	89	95	93
-⚙️ How the Code Works
 
-Data Creation
-Student marks are stored in a Pandas DataFrame.
+print("\nTOTAL & PERCENTAGE:\n")
+print(df[["Name", "Total", "Percentage"]])
 
-CSV File Handling
-The DataFrame is saved to a CSV file and then read back.
 
-Statistical Analysis
-Calculates average, maximum, and minimum marks per subject.
 
-Performance Evaluation
-Computes total marks and percentage for each student.
+plt.figure(figsize=(9,5))
+plt.bar(df["Name"], df["Total"])
+plt.title("Total Marks Comparison")
+plt.xlabel("Students")
+plt.ylabel("Total Marks")
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.show()
 
-Data Visualization
 
-Bar chart for total marks comparison
+plt.figure(figsize=(9,5))
+plt.bar(subjects, avg_marks)
+plt.title("Average Marks Per Subject")
+plt.xlabel("Subjects")
+plt.ylabel("Average Marks")
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.show()
 
-Bar chart for average marks per subject
 
-Line chart for student-wise performance
+plt.figure(figsize=(10,5))
+for i in range(len(df)):
+    plt.plot(subjects, df.loc[i, subjects], marker='o', label=df.loc[i,'Name'])
 
-Pie chart for subject-wise marks distribution of a student
 
-▶️ How to Run
+plt.title("Student Performance Across Subjects")
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.legend()
+plt.grid(True)
+plt.show()
 
-Clone the repository:
+index = 0
+student_name = df.loc[index, "Name"]
 
-git clone <repository-url>
-
-
-Install required libraries:
-
-pip install pandas matplotlib numpy
-
-
-Run the script:
-
-python student_marks.py
-
-📈 Output Visualizations
-
-Total Marks Comparison
-
-Average Marks Per Subject
-
-Student Performance Across Subjects
-
-Marks Distribution (Pie Chart)
-
-🎯 Use Cases
-
-Beginner Python & Data Science practice
-
-School / college mini-project
-
-Learning Pandas and Matplotlib
-
-Data visualization basics
-
-✨ Future Enhancements
-
-Add grading system (A, B, C, etc.)
-
-Export graphs as image files
-
-Add user input for dynamic data
-
-Include more students and subjects
-
-📜 License
-
-This project is open-source and free to use for learning and educational purposes.
-
-If you want, I can also:
-
-Make this shorter
-
-Add badges
-
-Write a GitHub description
-
-Create a requirements.txt
-
-Just tell me 😊
-
-in humanize form
-
-Sure 🙂
-Here is a more human-friendly, simple, and natural README that sounds less technical and more like a real person explaining the project.
-
-🎓 Student Marks Analysis (Python)
-
-This project is a small and beginner-friendly Python program that shows how student marks can be analyzed and visualized using Pandas and Matplotlib.
-It’s perfect for learning basic data handling, calculations, and graphs in Python.
-
-🤔 What is this project about?
-
-The program:
-
-Stores marks of students in different subjects
-
-Saves the data into a CSV file
-
-Reads the data back from the file
-
-Calculates totals, percentages, and subject-wise statistics
-
-Shows the results using easy-to-understand graphs
-
-It’s designed mainly for learning and practice.
-
-📊 What does the program do?
-
-Creates a table of student marks
-
-Calculates:
-
-Average marks for each subject
-
-Highest and lowest marks per subject
-
-Total marks and percentage for each student
-
-Displays graphs such as:
-
-Total marks comparison
-
-Average marks per subject
-
-Performance of each student across subjects
-
-Subject-wise marks distribution of a student
-
-🧰 Tools Used
-
-Python
-
-Pandas (for data handling)
-
-Matplotlib (for graphs)
-
-NumPy (optional)
-
-📁 Files in this project
-student_marks.py     → Main Python file
-student_marks.csv    → CSV file generated by the program
-README.md            → Project explanation
-
-▶️ How to run this project
-
-Make sure Python is installed on your system
-
-Install the required libraries:
-
-pip install pandas matplotlib numpy
-
-
-Run the program:
-
-python student_marks.py
-
-
-Once you run it, the program will print results in the terminal and display graphs on the screen.
-
-📈 Output
-
-You will see:
-
-Printed tables showing marks, totals, and percentages
-
-Bar charts comparing student scores
-
-A line chart showing performance across subjects
-
-A pie chart showing marks distribution for one student
-
-🎯 Who is this for?
-
-Beginners learning Python
-
-Students working on school or college projects
-
-Anyone starting with data analysis and visualization
-
-🌱 Future ideas
-
-Add grades (A, B, C, etc.)
-
-Let users enter student marks themselves
-
-Save graphs as image files
-
-Add more students and subjects
-
-❤️ Final Note
-
-This project is meant for learning and practice, so feel free to explore, modify, and improve it.
-If you’re new to Python or data analysis, this is a great place to start!
+plt.figure(figsize=(7,7))
+plt.pie(df.loc[index, subjects], labels=subjects, autopct='%1.1f%%')
+plt.title(f"Marks Distribution of {student_name}")
+plt.show()
